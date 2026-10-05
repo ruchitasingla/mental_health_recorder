@@ -143,16 +143,6 @@ jupyter notebook "mental health.ipynb"
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots of your application here.
-
-```
-![App Screenshot](screenshots/app.png)
-```
-
----
-
 ## 🔮 Future Improvements
 
 - Experiment with more advanced models and hyperparameter tuning
