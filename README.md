@@ -24,7 +24,7 @@
 </p>
 
 <!-- Add a screenshot of the app: save it as docs/screenshot.png, then uncomment the line below -->
-<!- <img src="docsscreenshot.png" alt="Mental Health Signal app" width="85%"/> -->
+<img src="docs/pipeline.png" alt="Jenkins pipeline: all stages passing" width="90%"/>
 
 </div>
 
