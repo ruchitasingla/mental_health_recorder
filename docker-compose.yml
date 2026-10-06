@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
   frontend:
     build: ./frontend
-    image: yourdockerhubuser/mh-frontend:latest
+    image: ruchitasingla/mh-frontend:latest
     ports: ["80:80"]
     depends_on: [backend]
     restart: unless-stopped
