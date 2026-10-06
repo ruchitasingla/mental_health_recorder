@@ -1,153 +1,250 @@
 <div align="center">
 
-# 🧠 Mental Health Score Predictor 
+# 🧠 Mental Health Signal
 
-### A Machine Learning application that predicts mental health scores from lifestyle and behavioral data
+### An ML web app that estimates a student's mental health score from daily habits, built and shipped with a full CI/CD pipeline
 
 <p>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
-  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
   <img src="https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
 </p>
 <p>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
 </p>
 <p>
-  <img src="https://img.shields.io/badge/Status-Completed-2ea44f?style=flat-square"/>
-  <img src="https://img.shields.io/badge/Duration-Aug%202025%20–%20Oct%202025-blue?style=flat-square"/>
   <img src="https://img.shields.io/github/last-commit/ruchitasingla/mental_health_recorder?style=flat-square"/>
   <img src="https://img.shields.io/github/repo-size/ruchitasingla/mental_health_recorder?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Tests-pytest-0A9EDC?style=flat-square"/>
+  <img src="https://img.shields.io/badge/Lint-ruff-D7FF64?style=flat-square"/>
 </p>
+
+<!-- Add a screenshot of the app: save it as docs/screenshot.png, then uncomment the line below -->
+<!- <img src="docsscreenshot.png" alt="Mental Health Signal app" width="85%"/> -->
 
 </div>
 
+---
 
 ## 📌 Overview
 
-The **Mental Health Score Predictor** is a machine learning application built in Python that estimates a person's **mental health score** from lifestyle and behavioral input features, such as social media usage and daily habits.
+**Mental Health Signal** takes a few answers about a student's day (sleep, screen time, study hours, stress, and so on) and returns a predicted **mental health score from 0 to 10**.
 
-The project covers the complete workflow: data preprocessing, exploratory data analysis (EDA), feature preparation, model training and evaluation, and integration of the trained model into an application that generates predictions from user-provided inputs.
+The project has two sides:
 
+- **The ML app.** A scikit-learn model trained on a student social-media dataset, served by a FastAPI backend and a responsive HTML/CSS/JS frontend.
+- **The DevOps pipeline.** Every `git push` is linted, tested, built into Docker images, pushed to Docker Hub, and deployed automatically by Jenkins.
 
+> ⚠️ This is an educational project, not a clinical tool. See the [disclaimer](#️-disclaimer).
+
+---
 
 ## ✨ Features
 
-- 📊 **Exploratory Data Analysis** to understand patterns between lifestyle factors and mental health
-- 🧹 **Data preprocessing** including cleaning, encoding and feature preparation
-- 🤖 **Predictive modeling** using Scikit-learn
-- 📈 **Model evaluation** to measure performance on unseen data
-- 🖥️ **Interactive application** that takes user inputs and returns a predicted score
+**Application**
+- 🎛️ Interactive form with sliders, tap-to-select options, and a live **24-hour day bar** that shows how your day is split
+- 🎯 Animated score gauge with a short, personalised tip list
+- 🌗 Light and dark themes
+- ✅ Input validation on both the browser and the server (Pydantic)
 
+**Engineering**
+- 🐳 Backend and frontend each in their own Docker image, run together with Docker Compose
+- 🔁 Jenkins pipeline: lint → test → build → push → deploy
+- 🪝 GitHub webhook triggers builds automatically on every push
+- 🧪 Automated API tests with pytest, linting with ruff
+- ❤️ `/health` endpoint plus a Docker `HEALTHCHECK`, and a non-root container user
 
+---
 
-## 🛠️ Tech Stack
-
-| Category | Tools |
-|----------|-------|
-| **Language** | Python |
-| **Data Handling** | Pandas, NumPy |
-| **Machine Learning** | Scikit-learn |
-| **Frontend** | HTML, CSS, JavaScript |
-| **Environment** | Jupyter Notebook, VS Code |
-
-
-
-## 📁 Project Structure
-
-
-mental_health_recorder/
-│
-├── README.md                          # Project documentation
-├── Student Social Media And Mental... # Dataset used for training
-├── mental health.ipynb                # Data analysis, preprocessing & model training
-├── main.py                            # Application / prediction logic
-├── index.html                         # User interface
-├── style.css                          # Styling
-└── script.js                          # Frontend logic
-
-
-
-## 🔄 Workflow
+## 🏗️ Architecture
 
 ```mermaid
 flowchart LR
-    A[Raw Dataset] --> B[Data Preprocessing]
-    B --> C[Exploratory Data Analysis]
-    C --> D[Feature Preparation]
-    D --> E[Model Training]
-    E --> F[Model Evaluation]
-    F --> G[Application Integration]
-    G --> H[Mental Health Score Prediction]
+    U[Browser] -->|http :80| N[Nginx container<br/>static UI]
+    N -->|/api/*| B[FastAPI container<br/>/predict · /health]
+    B --> M[(scikit-learn model<br/>.pkl)]
 ```
 
-1. **Data Preprocessing:** cleaned the dataset, handled missing values and encoded categorical features.
-2. **EDA:** analyzed distributions and relationships between features and the target score.
-3. **Feature Preparation:** selected and prepared input features for modeling.
-4. **Model Training:** trained predictive models using Scikit-learn.
-5. **Evaluation:** assessed model performance using suitable metrics.
-6. **Integration:** connected the trained model to an application that predicts scores from user inputs.
+Nginx serves the UI and forwards everything under `/api/` to the backend, so the browser only talks to one origin and no hardcoded URLs are needed.
 
+## 🔄 CI/CD Pipeline
+
+```mermaid
+flowchart LR
+    A[git push] --> B[GitHub webhook]
+    B --> C[Jenkins]
+    C --> D[Lint<br/>ruff]
+    D --> E[Test<br/>pytest]
+    E --> F[Build images<br/>docker compose]
+    F --> G[Push to<br/>Docker Hub]
+    G --> H[Deploy<br/>compose up -d]
+```
+
+| Stage | What happens |
+|-------|--------------|
+| **Checkout** | Jenkins pulls the latest commit |
+| **Lint** | `ruff` checks the Python code |
+| **Test** | `pytest` runs the API tests (valid prediction, bad input, health check) |
+| **Build images** | `docker compose build` creates the backend and frontend images, tagged `latest` and with the build number |
+| **Push images** | Images go to Docker Hub (`main` branch only) |
+| **Deploy** | `docker compose up -d` starts the new version (`main` branch only) |
+
+Docker Hub images: [`ruchitasingla/mh-backend`](https://hub.docker.com/r/ruchitasingla/mh-backend) and [`ruchitasingla/mh-frontend`](https://hub.docker.com/r/ruchitasingla/mh-frontend)
+
+---
+
+## 🛠️ Tech Stack
+
+| Area | Tools |
+|------|-------|
+| **Machine learning** | Python, Pandas, NumPy, Scikit-learn, Jupyter |
+| **Backend** | FastAPI, Pydantic, Uvicorn |
+| **Frontend** | HTML, CSS, JavaScript, served by Nginx |
+| **Containers** | Docker, Docker Compose |
+| **CI/CD** | Jenkins (Multibranch Pipeline), GitHub webhooks, ngrok |
+| **Quality** | pytest, ruff |
+
+---
+
+## 📁 Project Structure
+
+```
+mental_health_recorder/
+├── backend/
+│   ├── main.py                 # FastAPI app: /predict, /health
+│   ├── models/                 # Trained model (.pkl)
+│   ├── tests/test_api.py       # API tests
+│   ├── requirements.txt
+│   ├── requirements-dev.txt    # pytest, httpx, ruff
+│   └── Dockerfile
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── nginx.conf              # serves UI, proxies /api to the backend
+│   └── Dockerfile
+├── jenkins/
+│   └── Dockerfile              # Jenkins image with Python + Docker CLI
+├── Jenkinsfile                 # The pipeline definition
+├── docker-compose.yml
+├── mental health.ipynb         # EDA, preprocessing, model training
+└── Student Social Media And Mental Health Impact.csv
+```
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Run with Docker (recommended)
 
-- Python 3.8 or higher
-- pip
-
-### Installation
+You only need [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/ruchitasingla/mental_health_recorder.git
-
-# 2. Move into the project folder
 cd mental_health_recorder
-
-# 3. Install the required libraries
-pip install pandas numpy scikit-learn
+docker compose up --build
 ```
 
-### Run the Application
+Open **http://localhost** and fill in the form. Check the API with **http://localhost/api/health**, which should return `{"status":"ok"}`.
+
+Stop everything with `docker compose down`.
+
+### Run the backend without Docker
+
+Use Python 3.11 so the saved model loads with the same scikit-learn version it was trained with.
 
 ```bash
-python main.py
+cd backend
+python -m venv venv
+venv\Scripts\activate          # macOS/Linux: source venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn main:app --reload
 ```
 
-Then open `index.html` in your browser (or the local URL shown in the terminal) and enter your details to get a prediction.
+The interactive API docs are at http://localhost:8000/docs. To point the frontend at this server, add `<script>window.API_BASE="http://localhost:8000"</script>` above the `script.js` tag in `index.html`.
 
-### Explore the Analysis
+### Run the tests
 
 ```bash
-jupyter notebook "mental health.ipynb"
+cd backend
+pytest -v
+ruff check main.py tests
 ```
 
-## 📊 Results
+---
 
-> Add your model's performance here, for example:
+## 🔌 API
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/health` | Liveness check |
+| `POST` | `/predict` | Returns the predicted score |
+
+**Example request**
+
+```json
+{
+  "age": 21,
+  "gender": "Female",
+  "country": "India",
+  "academic_level": "Undergraduate",
+  "most_used_platform": "Youtube",
+  "purpose_of_use": "Education",
+  "avg_daily_usage_hours": 4.5,
+  "daily_unlocks": 80,
+  "study_hours": 4,
+  "physical_activity_hours": 1,
+  "sleep_hours_per_night": 7,
+  "stress_level": "Medium"
+}
+```
+
+**Example response**
+
+```json
+{ "predicted_mental_health_score": 6.8 }
+```
+
+Invalid input (age out of range, unknown option, missing field) returns `422` with the failing field named.
+
+---
+
+## 🤖 Model
+
+- **Dataset:** *Student Social Media and Mental Health Impact* (5,000 rows, 12 input features, one target score)
+- **Steps:** cleaning, categorical encoding, grouping rare countries into `Other`, training and evaluation in [`mental health.ipynb`](mental%20health.ipynb)
+- **Serving:** the trained pipeline is saved with `joblib` and loaded once when the API starts
 
 | Metric | Score |
 |--------|-------|
-| R² Score | _your value_ |
-| MAE | _your value_ |
-| RMSE | _your value_ |
+| R² | _add from notebook_ |
+| MAE | _add from notebook_ |
+| RMSE | _add from notebook_ |
 
+---
 
-## 🔮 Future Improvements
+## 🗺️ Roadmap
 
-- Experiment with more advanced models and hyperparameter tuning
-- Add data visualizations for feature importance
-- Expand the dataset for better generalization
+- [x] Dockerise backend and frontend
+- [x] Jenkins pipeline with lint, test, build, push, deploy
+- [x] Automatic builds on push (GitHub webhook)
+- [ ] Image vulnerability scanning with Trivy
+- [ ] Deploy to a cloud VM over SSH
+- [ ] Monitoring with Prometheus and Grafana
+- [ ] Infrastructure as code (Terraform, Ansible) and Kubernetes
+- [ ] MLOps: experiment tracking and model drift checks
 
+---
 
 ## ⚠️ Disclaimer
 
-This project is built for **educational purposes only**. The predictions are not a medical diagnosis. If you are struggling with your mental health, please reach out to a qualified professional.
+This project is for **educational purposes only**. Predictions come from a statistical model trained on a public dataset and are **not a medical diagnosis**. If you are struggling with your mental health, please reach out to a qualified professional or someone you trust.
 
+---
 
 ## 👩‍💻 Author
 
