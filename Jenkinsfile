@@ -2,12 +2,16 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_USER = 'ruchitasingla'   
+    DOCKER_USER = 'ruchitasingla'
     BACKEND_IMAGE  = "${DOCKER_USER}/mh-backend"
     FRONTEND_IMAGE = "${DOCKER_USER}/mh-frontend"
+    COMPOSE_PROJECT_NAME = 'mental-health-app'
   }
 
-  options { timestamps() }
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
 
   stages {
     stage('Checkout') {
@@ -64,7 +68,7 @@ pipeline {
     stage('Deploy') {
       when { branch 'main' }
       steps {
-        sh 'docker compose up -d'
+        sh 'docker compose up -d --remove-orphans'
         sh 'sleep 8 && docker compose exec -T backend python -c "import urllib.request; print(urllib.request.urlopen(\'http://localhost:8000/health\').read())"'
       }
     }
@@ -74,4 +78,4 @@ pipeline {
     always { sh 'docker logout || true' }
     failure { echo 'Pipeline failed. Check the stage logs above.' }
   }
-}
+}   

@@ -25,7 +25,6 @@
 
 </div>
 
----
 
 ## 📌 Overview
 
@@ -33,7 +32,7 @@ The **Mental Health Score Predictor** is a machine learning application built in
 
 The project covers the complete workflow: data preprocessing, exploratory data analysis (EDA), feature preparation, model training and evaluation, and integration of the trained model into an application that generates predictions from user-provided inputs.
 
----
+
 
 ## ✨ Features
 
@@ -43,7 +42,7 @@ The project covers the complete workflow: data preprocessing, exploratory data a
 - 📈 **Model evaluation** to measure performance on unseen data
 - 🖥️ **Interactive application** that takes user inputs and returns a predicted score
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -55,11 +54,11 @@ The project covers the complete workflow: data preprocessing, exploratory data a
 | **Frontend** | HTML, CSS, JavaScript |
 | **Environment** | Jupyter Notebook, VS Code |
 
----
+
 
 ## 📁 Project Structure
 
-```
+
 mental_health_recorder/
 │
 ├── README.md                          # Project documentation
@@ -69,9 +68,8 @@ mental_health_recorder/
 ├── index.html                         # User interface
 ├── style.css                          # Styling
 └── script.js                          # Frontend logic
-```
 
----
+
 
 ## 🔄 Workflow
 
@@ -93,7 +91,6 @@ flowchart LR
 5. **Evaluation:** assessed model performance using suitable metrics.
 6. **Integration:** connected the trained model to an application that predicts scores from user inputs.
 
----
 
 ## 🚀 Getting Started
 
@@ -129,8 +126,6 @@ Then open `index.html` in your browser (or the local URL shown in the terminal) 
 jupyter notebook "mental health.ipynb"
 ```
 
----
-
 ## 📊 Results
 
 > Add your model's performance here, for example:
@@ -141,7 +136,6 @@ jupyter notebook "mental health.ipynb"
 | MAE | _your value_ |
 | RMSE | _your value_ |
 
----
 
 ## 🔮 Future Improvements
 
@@ -149,13 +143,11 @@ jupyter notebook "mental health.ipynb"
 - Add data visualizations for feature importance
 - Expand the dataset for better generalization
 
----
 
 ## ⚠️ Disclaimer
 
 This project is built for **educational purposes only**. The predictions are not a medical diagnosis. If you are struggling with your mental health, please reach out to a qualified professional.
 
----
 
 ## 👩‍💻 Author
 
@@ -170,8 +162,6 @@ This project is built for **educational purposes only**. The predictions are not
 <a href="mailto:ruchitasingla001@gmail.com">
   <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>
-
----
 
 <div align="center">
 
