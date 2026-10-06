@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mental Health Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>How is your day <span>treating</span> you?</h1>
+    <p>Move the sliders to match a normal day. Your score updates when you tap the button. It's a habit read, not a diagnosis.</p>
+  </div>
+  <button type="button" class="theme" id="theme" aria-label="Toggle dark mode">🌙</button>
+</header>
+
+<main class="layout">
+<form id="form" class="card" novalidate>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+  <section class="daycard">
+    <div class="day-head"><strong>Your 24 hours</strong><span id="day-note"></span></div>
+    <div class="day" id="day">
+      <i class="seg sleep" id="seg-sleep"></i><i class="seg study" id="seg-study"></i>
+      <i class="seg move" id="seg-move"></i><i class="seg screen" id="seg-screen"></i>
+    </div>
+    <div class="legend">
+      <span><b class="sleep"></b>Sleep</span><span><b class="study"></b>Study</span>
+      <span><b class="move"></b>Movement</span><span><b class="screen"></b>Screens</span>
+    </div>
+  </section>
+
+  <h2>About you</h2>
+  <div class="row">
+    <div class="field"><label for="age">Age</label>
+      <input type="number" id="age" min="10" max="100" placeholder="21" />
+      <small class="err"></small></div>
+    <div class="field"><label for="country">Country</label>
+      <input type="text" id="country" list="countries" placeholder="India" autocomplete="off" />
+      <datalist id="countries"><option>India</option><option>USA</option><option>Canada</option><option>Australia</option><option>UK</option><option>Germany</option><option>Mexico</option><option>Turkey</option><option>France</option></datalist>
+      <small class="err"></small></div>
+  </div>
+  <div class="field"><label>Gender</label>
+    <div class="choice cols-2" data-name="gender"><button type="button" data-value="Male">Male</button><button type="button" data-value="Female">Female</button></div>
+    <input type="hidden" id="gender" /><small class="err"></small></div>
+  <div class="field"><label>Academic level</label>
+    <div class="choice cols-3" data-name="academic_level"><button type="button" data-value="High School">High school</button><button type="button" data-value="Undergraduate">Undergraduate</button><button type="button" data-value="Graduate">Graduate</button></div>
+    <input type="hidden" id="academic_level" /><small class="err"></small></div>
+
+  <h2>Your phone</h2>
+  <div class="field"><label>Most-used app</label>
+    <div class="choice chips" data-name="most_used_platform">
+      <button type="button" data-value="Instagram">📸 Instagram</button><button type="button" data-value="YouTube">▶️ YouTube</button>
+      <button type="button" data-value="TikTok">🎵 TikTok</button><button type="button" data-value="WhatsApp">💬 WhatsApp</button>
+      <button type="button" data-value="Facebook">👍 Facebook</button><button type="button" data-value="Snapchat">👻 Snapchat</button>
+      <button type="button" data-value="Twitter">🐦 Twitter</button><button type="button" data-value="LinkedIn">💼 LinkedIn</button>
+      <button type="button" data-value="WeChat">WeChat</button><button type="button" data-value="LINE">LINE</button>
+      <button type="button" data-value="KakaoTalk">KakaoTalk</button><button type="button" data-value="VKontakte">VKontakte</button>
+    </div>
+    <input type="hidden" id="most_used_platform" /><small class="err"></small></div>
+  <div class="field"><label>Why you use it</label>
+    <div class="choice cols-4" data-name="purpose_of_use"><button type="button" data-value="Networking">Networking</button><button type="button" data-value="Education">Education</button><button type="button" data-value="Entertainment">Fun</button><button type="button" data-value="News">News</button></div>
+    <input type="hidden" id="purpose_of_use" /><small class="err"></small></div>
+  <div class="field"><label for="avg_daily_usage_hours">Screen time per day <output for="avg_daily_usage_hours"></output></label>
+    <input type="range" id="avg_daily_usage_hours" min="0" max="16" step="0.5" value="4" data-unit=" h" /></div>
+  <div class="field"><label for="daily_unlocks">Phone unlocks per day <output for="daily_unlocks"></output></label>
+    <input type="range" id="daily_unlocks" min="0" max="300" step="5" value="80" /></div>
+
+  <h2>Your routine</h2>
+  <div class="field"><label for="sleep_hours_per_night">Sleep per night <output for="sleep_hours_per_night"></output></label>
+    <input type="range" id="sleep_hours_per_night" min="0" max="14" step="0.5" value="7" data-unit=" h" /></div>
+  <div class="field"><label for="study_hours">Study per day <output for="study_hours"></output></label>
+    <input type="range" id="study_hours" min="0" max="16" step="0.5" value="4" data-unit=" h" /></div>
+  <div class="field"><label for="physical_activity_hours">Movement per day <output for="physical_activity_hours"></output></label>
+    <input type="range" id="physical_activity_hours" min="0" max="6" step="0.25" value="1" data-unit=" h" /></div>
+  <div class="field"><label>How stressed do you feel?</label>
+    <div class="choice cols-4 moods" data-name="stress_level">
+      <button type="button" data-value="Low">😌<span>Low</span></button><button type="button" data-value="Medium">🙂<span>Medium</span></button>
+      <button type="button" data-value="High">😟<span>High</span></button><button type="button" data-value="Very High">😖<span>Very high</span></button>
+    </div>
+    <input type="hidden" id="stress_level" /><small class="err"></small></div>
+
+  <button type="submit" class="go" id="go"><span>Get my score</span><i class="spin"></i></button>
+</form>
+
+<aside class="result card" aria-live="polite">
+  <div id="s-idle" class="state">
+    <svg viewBox="0 0 240 150" class="gauge"><path class="track" d="M 30 130 A 90 90 0 0 1 210 130"/></svg>
+    <p class="big">Your score shows up here</p>
+    <p class="soft">Fill in the form, then tap “Get my score”.</p>
+  </div>
+  <div id="s-load" class="state" hidden><div class="pulse"></div><p class="big">Reading your day…</p></div>
+  <div id="s-res" class="state" hidden>
+    <svg viewBox="0 0 240 150" class="gauge">
+      <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#F0645B"/><stop offset=".5" stop-color="#F2B84B"/><stop offset="1" stop-color="#2FBF9A"/></linearGradient></defs>
+      <path class="track" d="M 30 130 A 90 90 0 0 1 210 130"/>
+      <path class="fill" id="fill" d="M 30 130 A 90 90 0 0 1 210 130"/>
+    </svg>
+    <div class="score"><b id="num">0.0</b><span>/10</span></div>
+    <p class="big" id="band"></p>
+    <p class="soft" id="ctx"></p>
+    <ul class="tips" id="tips"></ul>
+    <button type="button" class="again" id="again">Try different answers</button>
+  </div>
+  <div id="s-err" class="state" hidden>
+    <div class="bang">!</div><p class="big" id="err-title"></p><p class="soft" id="err-copy"></p>
+    <button type="button" class="again" id="retry">Back to the form</button>
+  </div>
+</aside>
+</main>
+
+<footer><p>For information only, not a clinical assessment. If you're struggling, please talk to someone you trust.</p></footer>
+<script src="script.js"></script>
+</body>
+</html>
