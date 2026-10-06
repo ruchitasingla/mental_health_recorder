@@ -14,11 +14,7 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
-      steps { checkout scm }
-    }
-
-    stage('Lint') {
+     stage('Lint') {
       steps {
         dir('backend') {
           sh '''
