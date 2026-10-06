@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Mental Health Score Predictor
+# 🧠 Mental Health Score Predictor 
 
 ### A Machine Learning application that predicts mental health scores from lifestyle and behavioral data
 
@@ -147,7 +147,6 @@ jupyter notebook "mental health.ipynb"
 
 - Experiment with more advanced models and hyperparameter tuning
 - Add data visualizations for feature importance
-- Deploy the application online
 - Expand the dataset for better generalization
 
 ---
