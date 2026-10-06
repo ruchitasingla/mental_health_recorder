@@ -4,6 +4,8 @@
 
 ### An ML web app that estimates a student's mental health score from daily habits, built and shipped with a full CI/CD pipeline
 
+**Live demo:** http://13.61.174.235
+
 <p>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
@@ -235,11 +237,11 @@ Invalid input (age out of range, unknown option, missing field) returns `422` wi
 - [x] Dockerise backend and frontend
 - [x] Jenkins pipeline with lint, test, build, push, deploy
 - [x] Automatic builds on push (GitHub webhook)
-- [ ] Image vulnerability scanning with Trivy
-- [ ] Deploy to a cloud VM over SSH
-- [ ] Monitoring with Prometheus and Grafana
-- [ ] Infrastructure as code (Terraform, Ansible) and Kubernetes
-- [ ] MLOps: experiment tracking and model drift checks
+- [x] Image vulnerability scanning with Trivy
+- [x] Deploy to a cloud VM over SSH
+- [x] Monitoring with Prometheus and Grafana
+- [x] Infrastructure as code (Terraform, Ansible) and Kubernetes
+- [x] MLOps: experiment tracking and model drift checks
 
 ---
 
