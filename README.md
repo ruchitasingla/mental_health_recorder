@@ -99,7 +99,7 @@ flowchart LR
 
 Docker Hub images: [`ruchitasingla/mh-backend`](https://hub.docker.com/r/ruchitasingla/mh-backend) and [`ruchitasingla/mh-frontend`](https://hub.docker.com/r/ruchitasingla/mh-frontend)
 ---
-git add docs/pipeline.png README.md
+
 ## 🛠️ Tech Stack
 
 | Area | Tools |
