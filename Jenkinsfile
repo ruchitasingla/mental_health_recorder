@@ -41,7 +41,7 @@ pipeline {
 
     stage('Build images') {
       steps {
-        sh 'docker compose build'
+        sh 'docker compose build --pull'
         sh '''
           docker tag $BACKEND_IMAGE:latest  $BACKEND_IMAGE:$BUILD_NUMBER
           docker tag $FRONTEND_IMAGE:latest $FRONTEND_IMAGE:$BUILD_NUMBER
