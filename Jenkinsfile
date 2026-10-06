@@ -6,6 +6,7 @@ pipeline {
     BACKEND_IMAGE  = "${DOCKER_USER}/mh-backend"
     FRONTEND_IMAGE = "${DOCKER_USER}/mh-frontend"
     COMPOSE_PROJECT_NAME = 'mental-health-app'
+    EC2_HOST = '13.61.174.235'
   }
 
   options {
@@ -14,7 +15,7 @@ pipeline {
   }
 
   stages {
-     stage('Lint') {
+    stage('Lint') {
       steps {
         dir('backend') {
           sh '''
@@ -44,7 +45,8 @@ pipeline {
         '''
       }
     }
-        stage('Security scan') {
+
+    stage('Security scan') {
       steps {
         sh '''
           for IMG in $BACKEND_IMAGE:$BUILD_NUMBER $FRONTEND_IMAGE:$BUILD_NUMBER; do
@@ -60,7 +62,7 @@ pipeline {
         '''
       }
     }
-  
+
     stage('Push images') {
       when { branch 'main' }
       steps {
@@ -77,11 +79,23 @@ pipeline {
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy to EC2') {
       when { branch 'main' }
       steps {
-        sh 'docker compose up -d --remove-orphans'
-        sh 'sleep 8 && docker compose exec -T backend python -c "import urllib.request; print(urllib.request.urlopen(\'http://localhost:8000/health\').read())"'
+        sshagent(credentials: ['ec2-ssh']) {
+          sh '''
+            scp -o StrictHostKeyChecking=accept-new docker-compose.prod.yml ubuntu@$EC2_HOST:~/docker-compose.yml
+            ssh -o StrictHostKeyChecking=accept-new ubuntu@$EC2_HOST \
+              "docker compose pull && docker compose up -d --remove-orphans && docker image prune -f"
+          '''
+        }
+      }
+    }
+
+    stage('Smoke test') {
+      when { branch 'main' }
+      steps {
+        sh 'curl -fsS --retry 10 --retry-delay 3 --retry-connrefused http://$EC2_HOST/api/health'
       }
     }
   }
@@ -90,4 +104,4 @@ pipeline {
     always { sh 'docker logout || true' }
     failure { echo 'Pipeline failed. Check the stage logs above.' }
   }
-}   
+}

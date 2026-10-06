@@ -1,0 +1,9 @@
+services:
+  backend:
+    image: ruchitasingla/mh-backend:latest
+    restart: unless-stopped
+  frontend:
+    image: ruchitasingla/mh-frontend:latest
+    ports: ["80:80"]
+    depends_on: [backend]
+    restart: unless-stopped
