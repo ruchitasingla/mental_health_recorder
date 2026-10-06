@@ -95,7 +95,7 @@ flowchart LR
 | **Push images** | Images go to Docker Hub (`main` branch only) |
 | **Deploy** | `docker compose up -d` starts the new version (`main` branch only) |
 
-<img src="pipelines.png" alt="Jenkins pipeline: all stages passing" width="90%"/>
+<img src="pipeline.png" alt="Jenkins pipeline: all stages passing" width="90%"/>
 
 Docker Hub images: [`ruchitasingla/mh-backend`](https://hub.docker.com/r/ruchitasingla/mh-backend) and [`ruchitasingla/mh-frontend`](https://hub.docker.com/r/ruchitasingla/mh-frontend)
 ---
