@@ -80,7 +80,8 @@ flowchart LR
     C --> D[Lint<br/>ruff]
     D --> E[Test<br/>pytest]
     E --> F[Build images<br/>docker compose]
-    F --> G[Push to<br/>Docker Hub]
+    F --> S[Security scan<br/>Trivy]
+    S --> G[Push to<br/>Docker Hub]
     G --> H[Deploy<br/>compose up -d]
 ```
 
@@ -90,13 +91,15 @@ flowchart LR
 | **Lint** | `ruff` checks the Python code |
 | **Test** | `pytest` runs the API tests (valid prediction, bad input, health check) |
 | **Build images** | `docker compose build` creates the backend and frontend images, tagged `latest` and with the build number |
+| **Security scan** | Trivy scans both images for known HIGH and CRITICAL vulnerabilities |
 | **Push images** | Images go to Docker Hub (`main` branch only) |
 | **Deploy** | `docker compose up -d` starts the new version (`main` branch only) |
 
+<img src="pipelines.png" alt="Jenkins pipeline: all stages passing" width="90%"/>
+
 Docker Hub images: [`ruchitasingla/mh-backend`](https://hub.docker.com/r/ruchitasingla/mh-backend) and [`ruchitasingla/mh-frontend`](https://hub.docker.com/r/ruchitasingla/mh-frontend)
-
 ---
-
+git add docs/pipeline.png README.md
 ## 🛠️ Tech Stack
 
 | Area | Tools |

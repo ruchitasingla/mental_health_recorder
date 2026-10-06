@@ -1,0 +1,9 @@
+desktop.ini
+.vscode/
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+.ipynb_checkpoints/
+.pytest_cache/
