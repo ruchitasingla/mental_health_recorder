@@ -6,7 +6,7 @@ pipeline {
     BACKEND_IMAGE  = "${DOCKER_USER}/mh-backend"
     FRONTEND_IMAGE = "${DOCKER_USER}/mh-frontend"
     COMPOSE_PROJECT_NAME = 'mental-health-app'
-    EC2_HOST = '13.51.158.192'
+    EC2_HOST = '16.171.146.25'
   }
 
   options {
