@@ -22,12 +22,12 @@
   <img src="https://img.shields.io/badge/Tests-pytest-0A9EDC?style=flat-square"/>
   <img src="https://img.shields.io/badge/Security-Trivy-1904DA?style=flat-square"/>
 </p>
-<<<<<<< HEAD
  <img src="docsscreenshot.png" alt="Mental Health Signal app" width="85%"/> 
 =======
 
 **Demo video:** [Watch the project demo](https://drive.google.com/file/d/1Gu7KSkcQFm0wWSc-9JoMF_ClM1K4x5Xp/view?usp=sharing)
-**Demos:** · [The CI/CD pipeline in action](https://drive.google.com/file/d/1Ne3kpWtOflPTdEpvyZ88AZpCu9eNU2CZ/view?usp=drive_link)
+
+**Demo video** · [The CI/CD pipeline in action](https://drive.google.com/file/d/1Ne3kpWtOflPTdEpvyZ88AZpCu9eNU2CZ/view?usp=drive_link)
 
 </div>
 
