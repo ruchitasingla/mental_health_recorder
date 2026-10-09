@@ -27,11 +27,11 @@
 
 **Demo video:** [Watch the project demo](https://drive.google.com/file/d/1Gu7KSkcQFm0wWSc-9JoMF_ClM1K4x5Xp/view?usp=sharing)
 
-**Demo video** · [The CI/CD pipeline in action](https://drive.google.com/file/d/1Ne3kpWtOflPTdEpvyZ88AZpCu9eNU2CZ/view?usp=drive_link)
+**Demo video** [The CI/CD pipeline in action](https://drive.google.com/file/d/1Ne3kpWtOflPTdEpvyZ88AZpCu9eNU2CZ/view?usp=drive_link)
 
 </div>
 
-> **Live demo:** hosted on AWS EC2 and stopped when idle to save cost, so the link may be offline. See the demos and pipeline screenshot below, or run it locally with `docker compose up --build`.
+> **Live demo:** hosted on AWS EC2 and stopped when idle to save cost, so the link may be offline. See the demos and pipeline videos above, or run it locally with `docker compose up --build`.
 
 <!-- Add your video links, then remove the comment markers:
 **Demos:** [The app predicting a score](LINK_1) · [The CI/CD pipeline in action](LINK_2)
