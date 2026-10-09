@@ -22,9 +22,7 @@
   <img src="https://img.shields.io/badge/Tests-pytest-0A9EDC?style=flat-square"/>
   <img src="https://img.shields.io/badge/Security-Trivy-1904DA?style=flat-square"/>
 </p>
-
-<!-- After you add a screenshot of the app as docs/screenshot.png, uncomment the next line -->
-<!-- <img src="docs/screenshot.png" alt="Mental Health Signal app" width="85%"/> -->
+ <img src="docsscreenshot.png" alt="Mental Health Signal app" width="85%"/> 
 
 </div>
 
