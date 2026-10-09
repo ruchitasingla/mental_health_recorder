@@ -91,11 +91,11 @@ pipeline {
         }
       }
     }
-
     stage('Smoke test') {
       when { branch 'main' }
       steps {
         sh 'curl -fsS --max-time 5 --retry 5 --retry-delay 3 --retry-connrefused http://$EC2_HOST/api/health'
+      }
     }
   }
 
@@ -104,3 +104,4 @@ pipeline {
     failure { echo 'Pipeline failed. Check the stage logs above.' }
   }
 }
+    
