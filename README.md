@@ -27,6 +27,7 @@
 =======
 
 **Demo video:** [Watch the project demo](https://drive.google.com/file/d/1Gu7KSkcQFm0wWSc-9JoMF_ClM1K4x5Xp/view?usp=sharing)
+**Demos:** · [The CI/CD pipeline in action](https://drive.google.com/file/d/1Ne3kpWtOflPTdEpvyZ88AZpCu9eNU2CZ/view?usp=drive_link)
 
 </div>
 
